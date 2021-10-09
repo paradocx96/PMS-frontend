@@ -1,7 +1,6 @@
 import React from "react";
 import {Button, Form} from "react-bootstrap";
 import SiteService from "../../../services/SiteService";
-import data from "bootstrap/js/src/dom/data";
 import Toast1 from "../../Toasts/Toast1";
 import CommonCheckAuthForInternalUsers from "../../../services/CommonCheckAuthForInternalUsers";
 

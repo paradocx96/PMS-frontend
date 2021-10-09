@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
 import Form from "react-validation/build/form";
-//import {Link}  from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import "../../../assets/style/Login.css";
 import InternalUserService from "../../../services/InternalUserService";

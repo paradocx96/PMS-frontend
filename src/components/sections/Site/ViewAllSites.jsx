@@ -1,6 +1,5 @@
 import React from "react";
 import SiteService from "../../../services/SiteService";
-import data from "bootstrap/js/src/dom/data";
 import {Button, Table} from "react-bootstrap";
 import CommonCheckAuthForInternalUsers from "../../../services/CommonCheckAuthForInternalUsers";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import UncountableItemService from "../../../../services/UncountableItemService";
-import data from "bootstrap/js/src/dom/data";
 import {confirmAlert} from "react-confirm-alert";
 import Toast1 from "../../../Toasts/Toast1";
 import {Button, Table} from "react-bootstrap";
