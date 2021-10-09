@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import AuthHeaderInternalUser from "./AuthHeaderInternalUser";
+import connection from "./connection.json";
 
 
-const API_SUPPLIER_BACKEND_URL = "http://localhost:5000/api/v1/internel-user/";
+const API_SUPPLIER_BACKEND_URL = connection.remoteAddress + "/api/v1/internel-user/";
 class InternalUserService extends Component {
    constructor(props) {
        super(props);

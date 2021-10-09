@@ -4,7 +4,7 @@ import axios from "axios";
 import connection from "./connection.json";
 
 const SERVICE_URL = "/api/v1/order";
-const URL = connection.localAddress + SERVICE_URL;
+const URL = connection.remoteAddress + SERVICE_URL;
 
 export default new class OrderService {
 

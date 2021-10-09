@@ -3,7 +3,7 @@ import connection from './connection.json';
 import axios from "axios";
 
 
-const BACKEND_BASE_URL = connection.localAddress;
+const BACKEND_BASE_URL = connection.remoteAddress;
 const SITE_URL = "/api/site/";
 
 class SiteService extends Component{

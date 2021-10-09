@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import connection from './connection.json';
 import axios from "axios";
 
-const BACKEND_BASE_URL = connection.localAddress;
+const BACKEND_BASE_URL = connection.remoteAddress;
 const COUNTABLE_URL = "/api/inventory/countable/";
 
 class CountableItemService extends Component{

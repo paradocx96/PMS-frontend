@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import connection from "./connection.json";
 
-const API_SUPPLIER_BACKEND_URL = "http://localhost:5000/api/v1/supplier/";
+const API_SUPPLIER_BACKEND_URL = connection.remoteAddress + "/api/v1/supplier/";
 class SupplierService extends Component {
    constructor(props) {
        super(props);
