@@ -91,12 +91,15 @@ class HeaderBar extends Component {
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand>
-                            <img
-                                src={mainLogo}
-                                height="50"
-                                className="d-inline-block align-top"
-                                alt="React Bootstrap logo"
-                            />
+                            <Link to={'/'}>
+
+                                <img
+                                    src={mainLogo}
+                                    height="50"
+                                    className="d-inline-block align-top"
+                                    alt="React Bootstrap logo"
+                                />
+                            </Link>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                         <Navbar.Collapse id="responsive-navbar-nav">
