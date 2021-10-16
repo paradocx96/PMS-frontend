@@ -31,6 +31,12 @@ class NavigationSeniorManager extends Component {
                                 <NavDropdown title="View Requisitions" id="collasible-nav-dropdown">
                                     <Link to={'/order/listSem'} className={'dropdown-item'}>Orders</Link>
                                 </NavDropdown>
+
+                                <NavDropdown title="Inventory" id="collasible-nav-dropdown">
+                                    <Link to={'/inventory/main'} className={'dropdown-item'}>Inventory</Link>
+                                    <Link to={'/inventory/countable/viewAll'} className={'dropdown-item'}>Countable Items</Link>
+                                    <Link to={'/inventory/uncountable/viewAll'} className={'dropdown-item'}>Uncountable Items</Link>
+                                </NavDropdown>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
