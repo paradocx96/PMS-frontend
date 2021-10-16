@@ -27,6 +27,7 @@ class NavigationAdmin extends Component {
                                     <Link to={'/site/viewAll'} className={'dropdown-item'}>Sites</Link>
                                     <Link to={'/site/addSite'} className={'dropdown-item'}>Add Sites</Link>
                                     <Link to={'/site/viewAllAdmin'} className={'dropdown-item'}>Sites(View)</Link>
+                                    <Link to={'/site/delete'} className={'dropdown-item'}>Delete Sites</Link>
                                 </NavDropdown>
                                 <NavDropdown title="Supplier" id="collasible-nav-dropdown">
                                     <Link to={'/supplier/list'} className={'dropdown-item'}>Suppliers</Link>

@@ -72,6 +72,8 @@ import ViewAllItems from "./components/pages/ViewAllItems";
 import UpdateSupplierItem from "./components/sections/Supplier/UpdateSupplierItem";
 import ViewSingleOrderSupplier from "./components/sections/Order/ViewSingleOrderSupplier";
 import FooterBar from "./components/layouts/Footer/FooterBar";
+import DeleteSites from "./components/sections/Site/DeleteSite";
+import DeleteSite from "./components/sections/Site/DeleteSite";
 
 
 function App() {
@@ -101,6 +103,7 @@ function App() {
                     <Route path="/site/addSite" component={AddSite}/>
                     <Route path="/site/viewAll" component={ViewAllSites}/>
                     <Route path="/site/viewAllAdmin" component={ViewAllSiteAdmin}/>
+                    <Route path="/site/delete" component={DeleteSite}/>
 
                     {/* INVENTORY */}
                     {/*inventory*/}
