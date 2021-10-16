@@ -6,6 +6,9 @@ import {Container, Table} from "react-bootstrap";
 import SiteService from "../../../services/SiteService";
 import NavigationAccountant from "../../layouts/Navigation/NavigationAccountant";
 import DeliveryLogService from "../../../services/DeliveryLogService";
+import InternalUserService from "../../../services/InternalUserService";
+import NavigationAdmin from "../../layouts/Navigation/NavigationAdmin";
+import NavigationSeniorManager from "../../layouts/Navigation/NavigationSeniorManager";
 
 class ViewSingleOrderAccountant extends Component {
 
@@ -22,6 +25,9 @@ class ViewSingleOrderAccountant extends Component {
             errors: null,
             show: false
         }
+
+        const user = InternalUserService.getCurrentInternalUser();
+        this.state.role = user.roles[0];
     }
 
     // Initializing default values
@@ -135,7 +141,14 @@ class ViewSingleOrderAccountant extends Component {
     render() {
         return (
             <div>
-                <NavigationAccountant/>
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_ACCOUNTANT'?
+                        <NavigationAccountant/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div> </div>
+                }
                 <Container style={this.divCon}>
                     <section style={this.divSection}>
                         <Table style={this.tabStyle}>

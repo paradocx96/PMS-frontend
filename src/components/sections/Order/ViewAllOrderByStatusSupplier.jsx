@@ -3,33 +3,28 @@
 import React, {Component} from 'react';
 import {Button, Container, Form, Table} from "react-bootstrap";
 import OrderService from "../../../services/OrderService";
-import InternalUserService from "../../../services/InternalUserService";
 import {Link} from "react-router-dom";
-import NavigationAccountant from "../../layouts/Navigation/NavigationAccountant";
-import NavigationAdmin from "../../layouts/Navigation/NavigationAdmin";
-import NavigationSeniorManager from "../../layouts/Navigation/NavigationSeniorManager";
+import NavigationSupplier from "../../layouts/Navigation/NavigationSupplier";
 
-class ViewAllOrderAccountant extends Component {
+class ViewAllOrderSupplier extends Component {
 
     // Initializing state values and functions
     constructor(props) {
         super(props);
         this.state = {
-            orderList: [],
+            orderListPlaced: [],
             status: ''
         }
-        const user = InternalUserService.getCurrentInternalUser();
-        this.state.role = user.roles[0];
 
         this.onHandlerStatus = this.onHandlerStatus.bind();
         this.handleActivate = this.handleActivate.bind(this);
     }
 
     componentDidMount = async () => {
-        await OrderService.getAll()
+        await OrderService.getByStatus('Placed')
             .then(response => response.data)
             .then((data) => {
-                this.setState({orderList: data});
+                this.setState({orderListPlaced: data});
             }).catch(error =>
                 console.log(error.message)
             );
@@ -60,17 +55,9 @@ class ViewAllOrderAccountant extends Component {
     render() {
         return (
             <div>
-                {this.state.role === 'ROLE_ADMIN' ?
-                    <NavigationAdmin />:
-                    this.state.role == 'ROLE_ACCOUNTANT'?
-                        <NavigationAccountant/>:
-                        this.state.role === "ROLE_SENIOR_MANAGER"?
-                            <NavigationSeniorManager/>:
-                            <div> </div>
-                }
+                <NavigationSupplier/>
                 <Container>
-                    <h2>ORDERS HISTORY</h2>
-
+                    <h2>PLACED ORDERS</h2>
                     <Table striped bordered hover variant="dark" size="sm">
                         <thead>
                         <tr>
@@ -86,12 +73,12 @@ class ViewAllOrderAccountant extends Component {
                         </thead>
                         <tbody>
                         {
-                            this.state.orderList.length === 0 ?
+                            this.state.orderListPlaced.length === 0 ?
                                 <tr>
                                     <td>{'Data Not Available!'}</td>
                                 </tr>
                                 :
-                                this.state.orderList.map((item) => (
+                                this.state.orderListPlaced.map((item) => (
                                     <tr key={item.id}>
                                         <td>{item.referenceNo}</td>
                                         <td>{item.siteManagerId}</td>
@@ -106,14 +93,8 @@ class ViewAllOrderAccountant extends Component {
                                                                   name="status"
                                                                   onChange={this.onHandlerStatus}>
                                                         <option>Select Site</option>
-                                                        <option>pending</option>
-                                                        <option>Waiting for Approval</option>
-                                                        <option>Requisition Manager Approval</option>
-                                                        <option>Approved</option>
-                                                        <option>Partially Approved</option>
                                                         <option>Declined</option>
                                                         <option>Placed</option>
-                                                        <option>Referred</option>
                                                         <option>Returned to Originator</option>
                                                     </Form.Control>
                                                 </Form.Group>
@@ -122,7 +103,7 @@ class ViewAllOrderAccountant extends Component {
                                                     className="btn-success">Set Status</Button>
                                         </td>
                                         <td>
-                                            <Link to={`/order/viewAcc/` + item.id}
+                                            <Link to={`/order/viewSup/` + item.id}
                                                   className={'btn btn-primary'}>
                                                 View Order
                                             </Link>
@@ -138,4 +119,4 @@ class ViewAllOrderAccountant extends Component {
     }
 }
 
-export default ViewAllOrderAccountant;
+export default ViewAllOrderSupplier;

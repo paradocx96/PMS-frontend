@@ -5,6 +5,9 @@ import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import ProjectService from "../../../services/ProjectService";
 import SiteService from "../../../services/SiteService";
 import NavigationSeniorManager from "../../layouts/Navigation/NavigationSeniorManager";
+import InternalUserService from "../../../services/InternalUserService";
+import NavigationAdmin from "../../layouts/Navigation/NavigationAdmin";
+import NavigationAccountant from "../../layouts/Navigation/NavigationAccountant";
 
 class AddProjectSM extends Component {
 
@@ -16,6 +19,9 @@ class AddProjectSM extends Component {
         this.state.siteList = [];
         this.state.show = false;
         this.state.message = '';
+
+        const user = InternalUserService.getCurrentInternalUser();
+        this.state.role = user.roles[0];
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onReset = this.onReset.bind(this);
@@ -96,7 +102,12 @@ class AddProjectSM extends Component {
     render() {
         return (
             <div>
-                <NavigationSeniorManager/>
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div> </div>
+                }
                 <Container>
                     <h2>ADD NEW PROJECT</h2>
 

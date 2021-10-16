@@ -48,6 +48,7 @@ import AddProjectSM from "./components/sections/Project/AddProjectSM";
 import ViewAllProjectSM from "./components/sections/Project/ViewAllProjectSM";
 import ViewAllProjectAdmin from "./components/sections/Project/ViewAllProjectAdmin";
 import EditProjectSM from "./components/sections/Project/EditProjectSM";
+import ViewAllProjectDelete from "./components/sections/Project/ViewAllProjectDelete";
 
 
 //Order
@@ -74,6 +75,7 @@ import ViewSingleOrderSupplier from "./components/sections/Order/ViewSingleOrder
 import FooterBar from "./components/layouts/Footer/FooterBar";
 import DeleteSites from "./components/sections/Site/DeleteSite";
 import DeleteSite from "./components/sections/Site/DeleteSite";
+import ViewAllOrderSupplierPlaced from "./components/sections/Order/ViewAllOrderSupplierPlaced";
 
 
 function App() {
@@ -129,6 +131,7 @@ function App() {
                     <Route path={'/project/editProjectSm/:id'} component={EditProjectSM}/>
                     <Route path={'/project/listSm'} component={ViewAllProjectSM}/>
                     <Route path={'/project/list'} component={ViewAllProjectAdmin}/>
+                    <Route path={'/project/delete'} component={ViewAllProjectDelete}/>
 
 
                     {/* ORDER */}
@@ -139,6 +142,7 @@ function App() {
                     <Route path={'/order/listAcc'} component={ViewAllOrderAccountant}/>
                     <Route path={'/order/listSem'} component={ViewAllOrderSeManager}/>
                     <Route path={'/order/listSup'} component={ViewAllOrderSupplier}/>
+                    <Route path={'/order/listSupChanged'} component={ViewAllOrderSupplierPlaced}/>
                     <Route path={'/order/viewSm/:id'} component={ViewSingleOrderSM}/>
                     <Route path={'/order/viewAcc/:id'} component={ViewSingleOrderAccountant}/>
                     <Route path={'/order/viewSem/:id'} component={ViewSingleOrderSeManager}/>

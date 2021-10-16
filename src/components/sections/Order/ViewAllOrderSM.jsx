@@ -47,7 +47,7 @@ class ViewAllOrderSM extends Component {
     submitDelete = (id, status) => {
         confirmAlert({
             title: 'Confirm to delete?',
-            message: 'Are you sure to delete this Laptop.',
+            message: 'Are you sure to delete this Order.',
             buttons: [
                 {
                     label: 'Yes',

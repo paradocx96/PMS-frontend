@@ -25,7 +25,8 @@ class NavigationSupplier extends Component {
                                     <Link to={'/add-items'} className={'dropdown-item'}>Add Item</Link>
                                 </NavDropdown>
                                 <NavDropdown title="Orders" id="collasible-nav-dropdown">
-                                    <Link to={'/order/listSup'} className={'dropdown-item'}>Order List</Link>
+                                    <Link to={'/order/listSup'} className={'dropdown-item'}>Orders</Link>
+                                    <Link to={'/order/listSupChanged'} className={'dropdown-item'}>Order History</Link>
                                 </NavDropdown>
                             </Nav>
                         </Navbar.Collapse>
