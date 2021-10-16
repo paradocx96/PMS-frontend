@@ -44,7 +44,7 @@ class ViewAllSites extends React.Component{
                             <div></div>
                 }
 
-                <div>
+                <div className={'container-fluid'}>
                     <h2>All Sites</h2>
                     <Table striped bordered hover variant={'light'}>
 
