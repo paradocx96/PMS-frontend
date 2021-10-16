@@ -3,12 +3,20 @@ import {Button, Form} from "react-bootstrap";
 import SiteService from "../../../services/SiteService";
 import Toast1 from "../../Toasts/Toast1";
 import CommonCheckAuthForInternalUsers from "../../../services/CommonCheckAuthForInternalUsers";
+import InternalUserService from "../../../services/InternalUserService";
+import NavigationAdmin from "../../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../../layouts/Navigation/NavigationSeniorManager";
 
 class AddSite extends React.Component{
     constructor(props) {
         super(props);
         this.state = this.initialState;
         this.state.show = false;
+
+        const user = InternalUserService.getCurrentInternalUser();
+
+        this.state.role = user.roles[0];
 
         this.onChange = this.onChange.bind(this);
         this.submitSite = this.submitSite.bind(this);
@@ -50,6 +58,16 @@ class AddSite extends React.Component{
         const {siteName,location, siteManager} = this.state;
         return (
             <div>
+
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_SITE_MANAGER'?
+                        <NavigationSiteManager/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div></div>
+                }
+
                 <div className={'container-fluid'}>
 
 

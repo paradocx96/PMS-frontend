@@ -5,12 +5,20 @@ import {Button, Table} from "react-bootstrap";
 import {confirmAlert} from "react-confirm-alert";
 import Toast1 from "../../../Toasts/Toast1";
 import CommonCheckAuthForInternalUsers from "../../../../services/CommonCheckAuthForInternalUsers";
+import InternalUserService from "../../../../services/InternalUserService";
+import NavigationAdmin from "../../../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../../../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../../../layouts/Navigation/NavigationSeniorManager";
 
 class DeleteCountableItems extends React.Component{
     constructor(props) {
         super(props);
         this.state = this.initialState;
         this.state.show = false;
+
+        const user = InternalUserService.getCurrentInternalUser();
+
+        this.state.role = user.roles[0];
 
         this.requestDelete = this.requestDelete.bind(this);
         this.performDelete = this.performDelete.bind(this);
@@ -77,6 +85,14 @@ class DeleteCountableItems extends React.Component{
     render() {
         return (
             <div>
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_SITE_MANAGER'?
+                        <NavigationSiteManager/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div></div>
+                }
                 <div>
 
                     <div style={{"display": this.state.show ? "block" : "none"}}>

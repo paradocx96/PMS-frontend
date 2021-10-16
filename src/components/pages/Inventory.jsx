@@ -2,16 +2,38 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Col, Row} from "react-bootstrap";
 import CommonCheckAuthForInternalUsers from "../../services/CommonCheckAuthForInternalUsers";
+import InternalUserService from "../../services/InternalUserService";
+import NavigationAdmin from "../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../layouts/Navigation/NavigationSeniorManager";
 
 class Inventory extends React.Component{
     constructor(props) {
         super(props);
+        this.state = this.initialState;
+
+        const user = InternalUserService.getCurrentInternalUser();
+
+        this.state.role = user.roles[0];
+
+    }
+
+    initialState={
 
     }
 
     render() {
         return (
             <div>
+
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_SITE_MANAGER'?
+                        <NavigationSiteManager/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div></div>
+                }
 
                 <div className={'container-fluid'}>
 
