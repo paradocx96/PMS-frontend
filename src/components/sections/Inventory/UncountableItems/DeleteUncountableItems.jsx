@@ -92,7 +92,7 @@ class DeleteUncountableItems extends React.Component{
                             <div></div>
                 }
 
-                <div>
+                <div className={'container-fluid'}>
                     <div style={{"display": this.state.show ? "block" : "none"}}>
 
                         <Toast1

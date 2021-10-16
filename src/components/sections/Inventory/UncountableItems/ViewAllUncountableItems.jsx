@@ -56,7 +56,7 @@ class ViewAllUncountableItems extends React.Component{
                             <div></div>
                 }
 
-                <div>
+                <div className={'container-fluid'}>
                     <h2>Uncountable Items</h2>
                     <Table striped bordered hover variant={'light'}>
                         <thead>

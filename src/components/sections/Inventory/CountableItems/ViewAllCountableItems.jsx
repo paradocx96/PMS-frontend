@@ -54,7 +54,7 @@ class ViewAllCountableItems extends React.Component{
                             <NavigationSeniorManager/>:
                             <div></div>
                 }
-                <div>
+                <div className={'container-fluid'}>
                     <h2>Countable Items</h2>
                     <Table striped bordered hover variant={'light'}>
                         <thead>
