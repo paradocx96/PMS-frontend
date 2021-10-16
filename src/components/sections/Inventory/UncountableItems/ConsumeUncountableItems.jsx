@@ -3,6 +3,10 @@ import UncountableItemService from "../../../../services/UncountableItemService"
 import Toast1 from "../../../Toasts/Toast1";
 import Toast2 from "../../../Toasts/Toast2";
 import {Button, Form} from "react-bootstrap";
+import InternalUserService from "../../../../services/InternalUserService";
+import NavigationAdmin from "../../../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../../../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../../../layouts/Navigation/NavigationSeniorManager";
 
 class ConsumeUncountableItems extends React.Component{
     constructor(props) {
@@ -10,6 +14,10 @@ class ConsumeUncountableItems extends React.Component{
         this.state = this.initialState;
         this.state.show = false;
         this.state.showExceeded = false;
+
+        const user = InternalUserService.getCurrentInternalUser();
+
+        this.state.role = user.roles[0];
 
         this.saveChanges = this.saveChanges.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -79,6 +87,15 @@ class ConsumeUncountableItems extends React.Component{
         const {amount, consumedAmount} = this.state;
         return (
             <div>
+
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_SITE_MANAGER'?
+                        <NavigationSiteManager/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div></div>
+                }
 
                 <div className={'container-fluid'}>
 

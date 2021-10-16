@@ -2,6 +2,10 @@ import React from "react";
 import UncountableItemService from "../../../../services/UncountableItemService";
 import Toast1 from "../../../Toasts/Toast1";
 import {Button, Form} from "react-bootstrap";
+import InternalUserService from "../../../../services/InternalUserService";
+import NavigationAdmin from "../../../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../../../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../../../layouts/Navigation/NavigationSeniorManager";
 
 class ReplenishUncountableItems extends React.Component{
     constructor(props) {
@@ -9,6 +13,10 @@ class ReplenishUncountableItems extends React.Component{
         this.state = this.initialState;
         this.state.show = false;
         this.state.showExceeded = false;
+
+        const user = InternalUserService.getCurrentInternalUser();
+
+        this.state.role = user.roles[0];
 
         this.onChange = this.onChange.bind(this);
         this.saveChanges = this.saveChanges.bind(this);
@@ -73,6 +81,15 @@ class ReplenishUncountableItems extends React.Component{
         const {replenishedAmount} = this.state;
         return (
             <div>
+
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_SITE_MANAGER'?
+                        <NavigationSiteManager/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div></div>
+                }
 
                 <div className={'container-fluid'}>
 

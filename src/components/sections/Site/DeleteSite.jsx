@@ -1,16 +1,16 @@
 import React from "react";
-import CountableItemService from "../../../../services/CountableItemService";
+import SiteService from "../../../services/SiteService";
 
 import {Button, Table} from "react-bootstrap";
 import {confirmAlert} from "react-confirm-alert";
-import Toast1 from "../../../Toasts/Toast1";
-import CommonCheckAuthForInternalUsers from "../../../../services/CommonCheckAuthForInternalUsers";
-import InternalUserService from "../../../../services/InternalUserService";
-import NavigationAdmin from "../../../layouts/Navigation/NavigationAdmin";
-import NavigationSiteManager from "../../../layouts/Navigation/NavigationSiteManager";
-import NavigationSeniorManager from "../../../layouts/Navigation/NavigationSeniorManager";
+import Toast1 from "../../Toasts/Toast1";
+import CommonCheckAuthForInternalUsers from "../../../services/CommonCheckAuthForInternalUsers";
+import InternalUserService from "../../../services/InternalUserService";
+import NavigationAdmin from "../../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../../layouts/Navigation/NavigationSeniorManager";
 
-class DeleteCountableItems extends React.Component{
+class DeleteSite extends React.Component{
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -27,16 +27,16 @@ class DeleteCountableItems extends React.Component{
     }
 
     initialState={
-        countableItems:[]
+        sites:[]
     }
 
     componentDidMount= async () => {
-        await CountableItemService.getAllCountableItems()
+        await SiteService.getAllSites()
             .then(response => response.data)
             .then((data) => {
-                this.setState({countableItems:data});
+                this.setState({sites:data});
             }).catch(error => {
-                console.log("Cannot get all countable items. Error : ",error);
+                console.log("Cannot get all sites. Error : ",error);
             })
     }
 
@@ -61,19 +61,19 @@ class DeleteCountableItems extends React.Component{
     }
 
     performDelete = async (id) => {
-        await CountableItemService.deleteCountableItem(id)
+        await SiteService.deleteSite(id)
             .then(response => response.data)
             .then((data) => {
                 if (data != null){
                     this.setState({"show":true});
                     setTimeout(() => this.setState({"show":false}),3000);
                     this.setState({
-                        countableItems:this.state.countableItems.filter(countableItems =>
-                            countableItems.id !== id)
+                        sites:this.state.sites.filter(sites =>
+                            sites.id !== id)
                     })
                 }
             }).catch(error => {
-                console.log("Cannot delete item. Error: ",error);
+                console.log("Cannot delete site. Error: ",error);
             })
     }
 
@@ -108,49 +108,44 @@ class DeleteCountableItems extends React.Component{
 
                     </div>
 
-                    <h2>Delete Countable Items</h2>
+                    <h2>Delete Sites</h2>
 
                     <Table striped bordered hover variant={'light'}>
+
                         <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>Name</td>
-                            <td>Type</td>
-                            <td>Quantity</td>
-                            <td>Minimum Quantity</td>
                             <td>Site Id</td>
                             <td>Site Name</td>
+                            <td>Location</td>
+                            <td>Site Manager</td>
                         </tr>
                         </thead>
+
                         <tbody>
                         {
-                            this.state.countableItems.length === 0?
+                            this.state.sites.length === 0?
                                 <tr align={'center'}>
-                                    <td colSpan={6}>{this.state.countableItems.length} records available</td>
+                                    <td colSpan={6}>{this.state.sites.length} records available</td>
                                 </tr>:
-                                this.state.countableItems.map((e) => (
+
+                                this.state.sites.map((e) => (
                                     <tr key={e.id}>
                                         <td>{e.id}</td>
-                                        <td>{e.name}</td>
-                                        <td>{e.type}</td>
-                                        <td>{e.quantity}</td>
-                                        <td>{e.minimumQuantity}</td>
-                                        <td>{e.siteid}</td>
-                                        <td>{e.sitename}</td>
+                                        <td>{e.siteName}</td>
+                                        <td>{e.location}</td>
+                                        <td>{e.siteManager}</td>
 
                                         <td>
-                                            <Button
-                                                className={'btn btn-danger'}
-                                                onClick={this.requestDelete.bind(this,e.id)}
-                                            >
+                                            <Button onClick={this.requestDelete.bind(this,e.id)}
+                                                    className={'btn btn-danger'}>
                                                 Delete
                                             </Button>
                                         </td>
-
                                     </tr>
                                 ))
                         }
                         </tbody>
+
                     </Table>
                 </div>
 
@@ -159,4 +154,4 @@ class DeleteCountableItems extends React.Component{
     }
 
 }
-export default CommonCheckAuthForInternalUsers(DeleteCountableItems);
+export default CommonCheckAuthForInternalUsers(DeleteSite);

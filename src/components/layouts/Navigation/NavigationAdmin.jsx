@@ -26,7 +26,7 @@ class NavigationAdmin extends Component {
                                 <NavDropdown title="Site" id="collasible-nav-dropdown">
                                     <Link to={'/site/viewAll'} className={'dropdown-item'}>Sites</Link>
                                     <Link to={'/site/addSite'} className={'dropdown-item'}>Add Sites</Link>
-                                    <Link to={'/site/viewAllAdmin'} className={'dropdown-item'}>Sites(View)</Link>
+                                    <Link to={'/site/delete'} className={'dropdown-item'}>Delete Sites</Link>
                                 </NavDropdown>
                                 <NavDropdown title="Supplier" id="collasible-nav-dropdown">
                                     <Link to={'/supplier/list'} className={'dropdown-item'}>Suppliers</Link>
@@ -36,6 +36,12 @@ class NavigationAdmin extends Component {
                                 </NavDropdown>
                                 <NavDropdown title="Internal Users" id="collasible-nav-dropdown">
                                     <Link to={'/internal-user-register'} className={'dropdown-item'}>Register</Link>
+                                </NavDropdown>
+
+                                <NavDropdown title="Inventory" id="collasible-nav-dropdown">
+                                    <Link to={'/inventory/main'} className={'dropdown-item'}>Inventory</Link>
+                                    <Link to={'/inventory/countable/viewAll'} className={'dropdown-item'}>Countable Items</Link>
+                                    <Link to={'/inventory/uncountable/viewAll'} className={'dropdown-item'}>Uncountable Items</Link>
                                 </NavDropdown>
                             </Nav>
                         </Navbar.Collapse>
