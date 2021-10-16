@@ -4,11 +4,19 @@ import Toast1 from "../../../Toasts/Toast1";
 import {Button, Form} from "react-bootstrap";
 import UncountableItemService from "../../../../services/UncountableItemService";
 import CommonCheckAuthForInternalUsers from "../../../../services/CommonCheckAuthForInternalUsers";
+import InternalUserService from "../../../../services/InternalUserService";
+import NavigationAdmin from "../../../layouts/Navigation/NavigationAdmin";
+import NavigationSiteManager from "../../../layouts/Navigation/NavigationSiteManager";
+import NavigationSeniorManager from "../../../layouts/Navigation/NavigationSeniorManager";
 
 class AddUncountableItem extends React.Component{
     constructor(props) {
         super(props);
         this.state = this.initialState;
+
+        const user = InternalUserService.getCurrentInternalUser();
+
+        this.state.role = user.roles[0];
 
         this.submitItem = this.submitItem.bind(this);
         this.assignSiteName = this.assignSiteName.bind(this);
@@ -90,6 +98,14 @@ class AddUncountableItem extends React.Component{
         const {name, type, amount, minimumAmount,unit, siteId, siteName} = this.state;
         return (
             <div>
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_SITE_MANAGER'?
+                        <NavigationSiteManager/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div></div>
+                }
                 <div className={'container-fluid'}>
 
                     <div style={{"display": this.state.show ? "block" : "none"}}>

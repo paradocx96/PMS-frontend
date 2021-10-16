@@ -25,6 +25,12 @@ class NavigationSiteManager extends Component {
                                     <Link to={'/draft/listSm'} className={'dropdown-item'}>Draft Orders</Link>
                                     <Link to={'/order/addOrderSm'} className={'dropdown-item'}>Purchase Order</Link>
                                 </NavDropdown>
+
+                                <NavDropdown title="Inventory" id="collasible-nav-dropdown">
+                                    <Link to={'/inventory/main'} className={'dropdown-item'}>Inventory</Link>
+                                    <Link to={'/inventory/countable/viewAll'} className={'dropdown-item'}>Countable Items</Link>
+                                    <Link to={'/inventory/uncountable/viewAll'} className={'dropdown-item'}>Uncountable Items</Link>
+                                </NavDropdown>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
