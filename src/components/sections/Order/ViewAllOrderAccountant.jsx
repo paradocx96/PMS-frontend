@@ -3,9 +3,11 @@
 import React, {Component} from 'react';
 import {Button, Container, Form, Table} from "react-bootstrap";
 import OrderService from "../../../services/OrderService";
-import NavigationSiteManager from "../../layouts/Navigation/NavigationSiteManager";
+import InternalUserService from "../../../services/InternalUserService";
 import {Link} from "react-router-dom";
 import NavigationAccountant from "../../layouts/Navigation/NavigationAccountant";
+import NavigationAdmin from "../../layouts/Navigation/NavigationAdmin";
+import NavigationSeniorManager from "../../layouts/Navigation/NavigationSeniorManager";
 
 class ViewAllOrderAccountant extends Component {
 
@@ -16,6 +18,8 @@ class ViewAllOrderAccountant extends Component {
             orderList: [],
             status: ''
         }
+        const user = InternalUserService.getCurrentInternalUser();
+        this.state.role = user.roles[0];
 
         this.onHandlerStatus = this.onHandlerStatus.bind();
         this.handleActivate = this.handleActivate.bind(this);
@@ -56,9 +60,16 @@ class ViewAllOrderAccountant extends Component {
     render() {
         return (
             <div>
-                <NavigationAccountant/>
+                {this.state.role === 'ROLE_ADMIN' ?
+                    <NavigationAdmin />:
+                    this.state.role == 'ROLE_ACCOUNTANT'?
+                        <NavigationAccountant/>:
+                        this.state.role === "ROLE_SENIOR_MANAGER"?
+                            <NavigationSeniorManager/>:
+                            <div> </div>
+                }
                 <Container>
-                    <h2>PURCHASE HISTORY</h2>
+                    <h2>ORDERS HISTORY</h2>
 
                     <Table striped bordered hover variant="dark" size="sm">
                         <thead>
@@ -95,7 +106,7 @@ class ViewAllOrderAccountant extends Component {
                                                                   name="status"
                                                                   onChange={this.onHandlerStatus}>
                                                         <option>Select Site</option>
-                                                        <option>Pending</option>
+                                                        <option>pending</option>
                                                         <option>Waiting for Approval</option>
                                                         <option>Requisition Manager Approval</option>
                                                         <option>Approved</option>

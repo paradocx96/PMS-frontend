@@ -22,6 +22,8 @@ class NavigationAdmin extends Component {
                             <Nav className="me-auto">
                                 <NavDropdown title="Project" id="collasible-nav-dropdown">
                                     <Link to={'/project/list'} className={'dropdown-item'}>Projects</Link>
+                                    <Link to={'/project/addProjectSm'} className={'dropdown-item'}>Add Project</Link>
+                                    <Link to={'/project/delete'} className={'dropdown-item'}>Delete Project</Link>
                                 </NavDropdown>
                                 <NavDropdown title="Site" id="collasible-nav-dropdown">
                                     <Link to={'/site/viewAll'} className={'dropdown-item'}>Sites</Link>
@@ -33,6 +35,7 @@ class NavigationAdmin extends Component {
                                 </NavDropdown>
                                 <NavDropdown title="Order" id="collasible-nav-dropdown">
                                     <Link to={'/order/list'} className={'dropdown-item'}>Orders</Link>
+                                    <Link to={'/order/listAcc'} className={'dropdown-item'}>Management</Link>
                                 </NavDropdown>
                                 <NavDropdown title="Internal Users" id="collasible-nav-dropdown">
                                     <Link to={'/internal-user-register'} className={'dropdown-item'}>Register</Link>

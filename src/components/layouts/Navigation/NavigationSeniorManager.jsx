@@ -28,8 +28,9 @@ class NavigationSeniorManager extends Component {
                                     <Link to={'/project/listSm'} className={'dropdown-item'}>Projects</Link>
                                     <Link to={'/project/addProjectSm'} className={'dropdown-item'}>Add Project</Link>
                                 </NavDropdown>
-                                <NavDropdown title="View Requisitions" id="collasible-nav-dropdown">
-                                    <Link to={'/order/listSem'} className={'dropdown-item'}>Orders</Link>
+                                <NavDropdown title="Orders" id="collasible-nav-dropdown">
+                                    <Link to={'/order/listAcc'} className={'dropdown-item'}>Management</Link>
+                                    <Link to={'/order/listSem'} className={'dropdown-item'}>View Requisitions</Link>
                                 </NavDropdown>
 
                                 <NavDropdown title="Inventory" id="collasible-nav-dropdown">
